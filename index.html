@@ -1,12 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
     <title>Vue CRUD</title>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body>
+    <div class="container bg-dark py-3" id="app">
+      <h1 class="text-white text-center">{{ title }}</h1>
+
+      <input
+        type="text"
+        class="form-control my-2"
+        v-model="newTodo"
+        v-on:keyup.enter="addTodo"
+      />
+      <button class="btn btn-success" @click="addTodo">Add</button>
+
+      <div class="mt-3" v-for="(item, index) of todos">
+        <div :class="['alert', item.status ? 'alert-light' : 'alert-danger']">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>{{ item.name }} {{ item.status ? '' : ' - Done' }}</div>
+            <div>
+              <button class="btn btn-success" @click="editTodo(index)">
+                Edit
+              </button>
+              <button class="btn btn-danger" @click="deleteTodo(index)">X</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- development version, includes helpful console warnings; this script must be written before app.js script! -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="app.js"></script>
+  </body>
 </html>
